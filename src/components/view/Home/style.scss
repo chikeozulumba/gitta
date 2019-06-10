@@ -1,0 +1,64 @@
+.homePage {
+  .home-action {
+    width: 50%;
+    top: 30%;
+    position: absolute;
+    @media screen and (max-width: 600px) {
+      width: 85%;
+    }
+
+    .title {
+      font-family: TiemposHeadline-Black;
+      // font-size: 1rem;
+      // line-height: 1.5rem;
+    }
+
+    .meta-title {
+      font-family: 'Circular-Book';
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .search-action {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        &::-webkit-input-placeholder {
+          font-size: 1rem;
+          color: darkgrey;
+          font-family: 'Circular-Book';
+          margin-top: 10px;
+        }
+        font-size: 1rem;
+        font-family: 'Circular-Book';
+        padding: 0.8rem 1rem;
+        height: 3rem;
+        width: 70%;
+        border-radius: 5px;
+        outline: none;
+        user-select: none;
+        box-sizing: border-box;
+        display: block;
+        background-color: #fff;
+        border: 1px solid #d9d9d9;
+        border-top-width: 1.02px;
+        transition: all .3s cubic-bezier(.645,.045,.355,1);
+        @media screen and (max-width: 768px) {
+          width: 70%;
+        }
+      }
+
+      button {
+        background: #000;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 5px;
+        font-weight: 500;
+        font-family: 'Circular-Bold';
+        padding: 0.8rem 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
