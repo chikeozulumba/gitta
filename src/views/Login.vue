@@ -1,15 +1,15 @@
 <template>
-  <RegisterComponent />
+  <LoginComponent />
 </template>
 
 <script>
-import RegisterComponent from '@/components/view/Register/index.vue';
+import LoginComponent from '@/components/view/Login/index.vue';
 
 export default {
   name: 'homePage',
   props: ['homeTitle'],
   components: {
-    RegisterComponent,
+    LoginComponent,
   },
 };
 </script>
