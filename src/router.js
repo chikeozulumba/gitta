@@ -1,10 +1,11 @@
 import Vue from 'vue';
+import { auth } from 'firebase';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -35,3 +36,24 @@ export default new Router({
     },
   ],
 });
+
+const authRoutes = ['login', 'register'];
+const restrictedRoutes = ['dashboard'];
+
+router.beforeEach((to, from, next) => {
+  let isAuth = null;
+  auth().onAuthStateChanged((user) => {
+    if (user) {
+      isAuth = true;
+    }
+    if (isAuth && authRoutes.includes(to.name)) {
+      return next('/dashboard');
+    }
+    if (!isAuth && restrictedRoutes.includes(to.name)) {
+      return next('/login');
+    }
+    return next();
+  });
+});
+
+export default router;
