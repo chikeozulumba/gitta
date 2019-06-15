@@ -15,8 +15,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  .brand-logo img {
+  .brand-logo {
     height: 40px;
+    font-size: 1.8rem;
+    color: black;
+    font-family: 'TiemposHeadline-Black';
+    @media screen and (max-width: 500px) {
+      font-size: 1.3rem;
+    }
   }
   .navMenu {
     display: flex;

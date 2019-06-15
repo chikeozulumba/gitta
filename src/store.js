@@ -4,13 +4,16 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
+    state: {
+        items: [],
+    },
+    mutations: {
+        commitItems: (state, payload) => state.items = [ ...payload ],
+    },
+    actions: {
 
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  },
+    },
+    getters: {
+        allRepoItems: state => state.items
+    }
 });

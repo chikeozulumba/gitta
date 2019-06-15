@@ -66,17 +66,17 @@ export default {
     setFields(evt, field) { this[field] = evt.target.value; },
     loginAccount() {
       auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(res => {
-            const userData = res.user.providerData[0];
-            localStorage.setItem('mc-auth', JSON.stringify(userData));
-            this.error = null;
-            this.$router.push({ name: 'dashboard' });
-            return res;
-          })
-          .catch(error => {
-            this.error = error.message;
-          });
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((res) => {
+          const userData = res.user.providerData[0];
+          localStorage.setItem('mc-auth', JSON.stringify(userData));
+          this.error = null;
+          this.$router.push({ name: 'dashboard' });
+          return res;
+        })
+        .catch((error) => {
+          this.error = error.message;
+        });
     },
   },
 };

@@ -2,19 +2,14 @@
   <div class="homePage container">
     <div class="home-action">
       <h1 class="title">
-        Music is Choice, <br/>
-        Collect all the music you want.
+        Bookmark your Fav Developer, <br/>
+        Save for reference, <br/>
       </h1>
       <p class="meta-title">
-        A website built solely for gathering peoples choice music
-        and serving as a directory for viewing,
-        listening, and updating them.
-      </p>
-      <p class="meta-title">
-        Enjoy yourself.
+        Get started below
       </p>
       <div class="search-action">
-        <input placeholder="Enter any music by title" />
+        <input placeholder="Find any repo of choice by title" />
         <button>
           Search
         </button>

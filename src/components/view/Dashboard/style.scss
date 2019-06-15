@@ -1,3 +1,7 @@
 .dashboard {
-  display: flex;
+  display: grid;
+  grid-gap: 10px;
+  padding-left: 1.9375rem;
+  padding-right: 1.9375rem;
+  // justify-content: center;
 }

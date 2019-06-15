@@ -1,7 +1,5 @@
 <template>
-  <div class="dashboard">
-    <DashboardComponent />
-  </div>
+  <DashboardComponent />
 </template>
 
 <script>

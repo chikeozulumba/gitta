@@ -7,3 +7,10 @@ global.window = document.parentWindow;
 const div = document.createElement('div');
 global.document.getElementById = id => id === 'app' && div;
 global.document.querySelector = () => div;
+
+const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn()
+};
+
+global.navigator.geolocation = mockGeolocation;
