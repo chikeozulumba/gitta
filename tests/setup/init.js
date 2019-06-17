@@ -1,4 +1,7 @@
 import { JSDOM } from 'jsdom';
+import firebase from 'firebase';
+// import './firebaseMock';
+import './axiosMock';
 
 const documentHTML = '<!doctype html><html><body><div id="root"></div></body></html>';
 global.document = new JSDOM(documentHTML);
@@ -13,4 +16,12 @@ const mockGeolocation = {
     watchPosition: jest.fn()
 };
 
+const mockClipboard = {
+    writeText: (url) => {
+        return new Promise(resolve => resolve(url), reject => reject(url))
+    }
+};
+
 global.navigator.geolocation = mockGeolocation;
+global.navigator.clipboard = mockClipboard;
+

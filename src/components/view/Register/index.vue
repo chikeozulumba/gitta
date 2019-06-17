@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { auth } from 'firebase';
+import firebase from 'firebase';
 import './style.scss';
 
 export default {
@@ -75,7 +75,7 @@ export default {
   methods: {
     setFields(evt, field) { this[field] = evt.target.value; },
     createAccount() {
-      auth()
+      firebase.auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((res) => {
           const userData = res.user.providerData[0];

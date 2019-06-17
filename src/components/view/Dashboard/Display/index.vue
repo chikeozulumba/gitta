@@ -32,8 +32,6 @@ import firebase from 'firebase';
 import { Toast } from '../../../../assets/js/Toast.js';
 import "./style.scss";
 
-const db = firebase.firestore();
-
 export default {
   name: "ReposMainDisplay",
   data: () => ({
@@ -47,12 +45,12 @@ export default {
   },
   methods: {
     copyCloneUrl(url, evt) {
-      navigator.clipboard.writeText(url).then(function() {
+      navigator.clipboard.writeText(url).then(() => {
         new Toast({
           message: `URL copied\n${url}`,
           type: 'success'
         });
-      }, function(err) {
+      }, (err) => {
         new Toast({
           message: `URL could not be copied: \n${url}`,
           type: 'error'
@@ -60,8 +58,7 @@ export default {
       });
     },
     addToRepos(newId, evt) {
-      const savedRepoRef = db.collection("savedRepos").doc(this.userId);
-      let savedRepos = [];
+      const savedRepoRef = firebase.firestore().collection("savedRepos").doc(this.userId);
       if (!this.userRepos.includes(newId)) {
         this.userRepos.push(newId);
         return savedRepoRef.update({
@@ -88,12 +85,12 @@ export default {
     }
   },
   mounted() {
-    db.collection("savedRepos").get().then((querySnapshot) => {
+    firebase.firestore().collection("savedRepos").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             this.userRepos = doc.data().repos || [];
-            console.log(this.userRepos);
         });
-    });
+    })
+    .catch((error) => console.log(error));
   }
 };
 </script>

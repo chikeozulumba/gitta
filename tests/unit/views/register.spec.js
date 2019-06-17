@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import faker from 'faker';
 import { mount } from '@vue/test-utils';
 import { initializeApp } from 'firebase';
@@ -17,6 +18,21 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 describe('Register.vue', () => {
+  beforeEach(() => {
+    jest.spyOn(firebase, 'auth').mockImplementation(() => ({
+      createUserWithEmailAndPassword: (email, password) => new Promise(resolve => ({
+        user: {
+          providerData: [{
+              uid: 'r4XDjIENbcfVn12Kr8c5sq2HdUy1',
+              displayName: null,
+              email: "chike.ozulumba@gmail.com",
+              phoneNumber: null,
+              photoUrl: null,
+          }]
+        }
+      }))
+    }));
+  });
   it('successfully renders the view', () => {
     const wrapper = mount(Register);
     const registerComponentWrapper = mount(RegisterComponent);

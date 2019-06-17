@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { auth } from 'firebase';
+import firebase from 'firebase';
 import './style.scss';
 
 export default {
@@ -52,9 +52,6 @@ export default {
     error: null,
   }),
   watch: {
-    username(val) {
-      if (val !== '') { this.submitButton = false; }
-    },
     email(val) {
       if (val !== '') { this.submitButton = false; }
     },
@@ -65,7 +62,7 @@ export default {
   methods: {
     setFields(evt, field) { this[field] = evt.target.value; },
     loginAccount() {
-      auth()
+      firebase.auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((res) => {
           const userData = res.user.providerData[0];
