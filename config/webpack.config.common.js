@@ -28,7 +28,7 @@ const webpackConfig = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                include: [ helpers.root('src') ]
+                include: [ helpers.root('src') ],
             },
             {
                 test: /\.css$/,
