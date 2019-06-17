@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { auth } from 'firebase';
+import firebase from 'firebase';
 import './style.scss';
 
 export default {
@@ -75,24 +75,24 @@ export default {
   methods: {
     setFields(evt, field) { this[field] = evt.target.value; },
     createAccount() {
-      auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          .then(res => {
-            const userData = res.user.providerData[0];
-            const authData = {
-              email: userData.email,
-              displayName: userData.displayName,
-              phoneNumber: userData.phoneNumber,
-              photoUrl: userData.photoURL,
-            }
-            localStorage.setItem('mc-auth', JSON.stringify(authData));
-            this.error = null;
-            this.$router.push({ name: 'dashboard' });
-            return res;
-          })
-          .catch(error => {
-            this.error = error.message;
-          });
+      firebase.auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((res) => {
+          const userData = res.user.providerData[0];
+          const authData = {
+            email: userData.email,
+            displayName: userData.displayName,
+            phoneNumber: userData.phoneNumber,
+            photoUrl: userData.photoURL,
+          };
+          localStorage.setItem('mc-auth', JSON.stringify(authData));
+          this.error = null;
+          this.$router.push({ name: 'dashboard' });
+          return res;
+        })
+        .catch((error) => {
+          this.error = error.message;
+        });
     },
   },
 };

@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+import lolex from 'lolex';
 import faker from 'faker';
 import { mount } from '@vue/test-utils';
 import { initializeApp } from 'firebase';
@@ -16,7 +18,26 @@ const firebaseConfig = {
   // Initialize Firebase
 initializeApp(firebaseConfig);
 
+jest.spyOn(firebase, 'auth').mockImplementation(() => ({
+  signInWithEmailAndPassword: (email, password) => new Promise(resolve => ({
+    user: {
+      providerData: [{
+          uid: 'r4XDjIENbcfVn12Kr8c5sq2HdUy1',
+          displayName: null,
+          email: "chike.ozulumba@gmail.com",
+          phoneNumber: null,
+          photoUrl: null,
+      }]
+    }
+  }))
+}));
+
 describe('Login.vue', () => {
+  let clock = null;
+  beforeEach(() => {
+    clock = lolex.install();
+    clock.tick(2000);
+  });
   it('successfully renders the view', () => {
     const wrapper = mount(Login);
     const loginComponentWrapper = mount(LoginComponent);
@@ -37,5 +58,19 @@ describe('Login.vue', () => {
     loginComponentWrapper.vm.$data.username = faker.name.findName();
     loginComponentWrapper.vm.$data.password = faker.internet.password();
     buttonWrapper.trigger('click.prevent');
+
+    firebase.auth()
+      .signInWithEmailAndPassword('this.email', 'this.password')
+      .then((res) => {
+        console.log(res);
+        const userData = res.user.providerData[0];
+        // localStorage.setItem('mc-auth', JSON.stringify(userData));
+        // this.error = null;
+        // this.$router.push({ name: 'dashboard' });
+        // return res;
+      })
+      .catch((error) => {
+        this.error = error.message;
+      });
   });
 });

@@ -1,7 +1,7 @@
 <template>
   <header id="navbar">
     <router-link class="brand-logo" to="/">
-      <img src="../../../assets/svg/logo.svg" />
+      Get Repo
     </router-link>
     <ul class="navMenu">
       <li class="navMenuItem">
